@@ -3834,7 +3834,7 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
             $numValue = self::extractNumber(substr($recordData, 6, 8));
 
             $cell = $this->phpSheet->getCell($columnString . ($row + 1));
-            if (!$this->readDataOnly) {
+            if (!$this->readDataOnly && isset($this->mapCellXfIndex[$xfIndex])) {
                 // add cell style
                 $cell->setXfIndex($this->mapCellXfIndex[$xfIndex]);
             }
@@ -4174,7 +4174,7 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
                 $cell = $this->phpSheet->getCell($columnString . ($row + 1));
                 $cell->setValueExplicit($value, PHPExcel_Cell_DataType::TYPE_STRING);
 
-                if (!$this->readDataOnly) {
+                if (!$this->readDataOnly && isset($this->mapCellXfIndex[$xfIndex])) {
                     // add cell style
                     $cell->setXfIndex($this->mapCellXfIndex[$xfIndex]);
                 }
